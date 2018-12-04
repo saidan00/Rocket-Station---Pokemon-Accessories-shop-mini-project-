@@ -32,7 +32,7 @@ function urlHandle(){
             let productLink = url + "?" + bestSellerArr[i].id.substr(0,3) + "#" + bestSellerArr[i].id;
             bestSellerText += "<div class='product'>" +
             "<div class='product-img'>"+
-            "<a href='" + productLink + "' target='_blank'>" + 
+            "<a href='" + productLink + "' target='_blank'>" +
             "<img src='" + bestSellerArr[i].imgLink + "' alt='" + bestSellerArr[i].alternateText + "'>" +
             "</a>"+
             "</div>" +
@@ -46,7 +46,7 @@ function urlHandle(){
             "<p>"  + "<span class='fix-price-highlight'>" + bestSellerArr[i].fixPrice + "₫" + "</span>" + "<span class='price-deco'>" + bestSellerArr[i].firstPrice + "₫" + "</span>"  +"</p>" +
             "</div>"+
             "<div class='add-cart-zone'>"+
-            "<button class='add-cart-btn' value='" + bestSellerArr[i].id + "'>Thêm vào giỏ</button>" + 
+            "<button class='add-cart-btn' value='" + bestSellerArr[i].id + "'>Thêm vào giỏ</button>" +
             "</div>" +
             '</div>';
         }
@@ -54,7 +54,7 @@ function urlHandle(){
         bestSellerBox.innerHTML = bestSellerText;
 
         //Best sale zone
-        
+
         let bestSaleTitle = "<div class='best-title'>" +
         "<h1>Best <span class='highlight'>Sale</span></h1>" +
         "<i class='fas fa-grip-horizontal'></i>" +
@@ -66,7 +66,7 @@ function urlHandle(){
             let productLink = url + "?" + filter + "#" + bestSaleArr[i].id;
             bestSaleText += "<div class='product'>" +
             "<div class='product-img'>"+
-            "<a href='" + productLink + "' target='_blank'>" + 
+            "<a href='" + productLink + "' target='_blank'>" +
             "<img src='" + bestSaleArr[i].imgLink + "' alt='" + bestSaleArr[i].alternateText + "'>" +
             "</a>"+
             "</div>" +
@@ -80,14 +80,14 @@ function urlHandle(){
             "<p>"  + "<span class='fix-price-highlight'>" + bestSaleArr[i].fixPrice + "₫" + "</span>" + "<span class='price-deco'>" + bestSaleArr[i].firstPrice + "₫" + "</span>"  +"</p>" +
             "</div>"+
             "<div class='add-cart-zone'>"+
-            "<button class='add-cart-btn' value='" + bestSaleArr[i].id + "'>Thêm vào giỏ</button>" + 
+            "<button class='add-cart-btn' value='" + bestSaleArr[i].id + "'>Thêm vào giỏ</button>" +
             "</div>" +
             '</div>';
         }
         bestSaleText += "</div>";
         bestSaleBox.innerHTML = bestSaleText;
 
-        
+
 
         //If user login true => can add product to cart
         //get all add to cart button
@@ -135,7 +135,7 @@ function urlHandle(){
 
         }
     }
-    
+
 }
 //Save product to shopping cart
 function saveProduct(productId){
@@ -197,7 +197,7 @@ function saveProduct(productId){
                 //handle quantity of product in shopping cart
                 productCartArr[position].quantity = checkProductQuantity(productId, productCartArr);
             }
-            
+
             //re-set to local storage
             localStorage.setItem('productCartArr',JSON.stringify(productCartArr));
             alert("Thêm vào giỏ thành công!!!");
@@ -234,11 +234,11 @@ function addLeftMenu(categoryUrl){
     mainZone.appendChild(leftMenu);
     //add Inpage search zone
     // leftMenu.appendChild(addSearchInpage());
-    //add Filter 
+    //add Filter
     let filterZone = document.createElement('div');
     filterZone.className = "filter";
     leftMenu.appendChild(filterZone);
-    
+
     document.querySelector('.filter').innerHTML = filterList(categoryUrl);
 }
 
@@ -257,7 +257,10 @@ function addSearchInpage(){
     return searchZone;
 }
 function filterList(categoryUrl){
-    let text = '<ul>' +
+    let text = '<input type="number" id="priceFrom" placeholder="Giá từ">' +
+        '<input type="number" id="priceTo" placeholder="Giá đến">' +
+        '<input type="button" onclick="setLinkAndGoToSearch()" value="click">' +
+        '<ul>' +
         '<li><a href="index.html' + '?' + categoryUrl + '&' + 'xanh&0">xanh</a></li>' +
         '<li><a href="index.html' + '?' + categoryUrl + '&' + 'do&0">đỏ</a></li>' +
         '<li><a href="index.html' + '?' + categoryUrl + '&' + 'tim&0">tím</a></li>' +
@@ -270,13 +273,13 @@ function filterList(categoryUrl){
         '<li><a href="index.html' + '?' + categoryUrl + '&' + 'hong&0">hồng</a></li>' +
     '</ul>';
     return text;
-}   
+}
 
 function addProductDisplayZone(position,productList,categoryUrl,baseUrl){
     //Create product display zone
     let displayZone = document.createElement('div');
     displayZone.className = "product-display-zone";
-    mainZone.appendChild(displayZone); 
+    mainZone.appendChild(displayZone);
     //create main frame of product display zone
     if(categoryUrl === 'fig'){
         addProductZoneMain("Pokemon Figure",displayZone);
@@ -287,13 +290,13 @@ function addProductDisplayZone(position,productList,categoryUrl,baseUrl){
     }else{
         addProductZoneMain("Áo thun",displayZone);
     }
-    //display product list 
+    //display product list
     document.querySelector('.product-zone').innerHTML = addProduct(position,productList,categoryUrl,baseUrl);
     //display pagination
     addPagination(productList,position,displayZone);
     //hide slide show
     slideZone.style.display = "none";
-    
+
 }
 function addProduct(position,productList,categoryUrl,baseUrl){
     let productText = "<div class='products'>";
@@ -316,7 +319,7 @@ function normalCategoryProduct(productList, position, categoryUrl, baseUrl){
         let productLink = baseUrl + "?"  + categoryUrl + "#" + productList[i].id;
         productText += "<div class='product'>" +
         "<div class='product-img'>"+
-        "<a href='" + productLink + "' target='_blank'>" + 
+        "<a href='" + productLink + "' target='_blank'>" +
         "<img src='" + productList[i].imgLink + "' alt='" + productList[i].alternateText + "'>" +
         "</a>"+
         "</div>" +
@@ -342,7 +345,7 @@ let colorPageIndex = 0;
 function colorCategoryProduct(productList,position,categoryUrl,baseUrl){
     let productText = "";
     let count = 0;
-    console.log("position " + position);
+    // console.log("position " + position);
     let eleUrl = position.split("&");
     //get length of color page
     for(let i = 0; i < productList.length; i++){
@@ -352,14 +355,14 @@ function colorCategoryProduct(productList,position,categoryUrl,baseUrl){
     }
 
     for(let i = eleUrl[1]; i < productList.length; i++){
-        console.log("product " + productList[i].color);
-        console.log("ele " + eleUrl[0]);  
+        // console.log("product " + productList[i].color);
+        // console.log("ele " + eleUrl[0]);
         if(productList[i].color == eleUrl[0]){
             count++;
             let productLink = baseUrl + "?"  + categoryUrl + "#" + productList[i].id;
             productText += "<div class='product'>" +
             "<div class='product-img'>"+
-            "<a href='" + productLink + "' target='_blank'>" + 
+            "<a href='" + productLink + "' target='_blank'>" +
             "<img src='" + productList[i].imgLink + "' alt='" + productList[i].alternateText + "'>" +
             "</a>"+
             "</div>" +
@@ -412,16 +415,33 @@ function addPagination(productList, position,displayZone){
             }
         }
     }else{
-        for(let i = 1; i <= numOfColorPage; i++){
-            pageIndex = (i-1)*8;
-            pages += "<a href='index.html?" + filterId + "&" + colorUrl[0] + "&" + pageIndex + "'";
-            if(pageIndex == colorUrl[1]){
-                pages += "class='active'>" + i + "</a>";
-            }else{
-                pages += ">" + i + "</a>";
-            }
-        }
+      if (position.indexOf('search') != -1){
+      var searchURL = location.href;
+      var productType = (searchURL.split('?')[1]).split('&')[0];
+      var priceFrom = (searchURL.split('price')[1]).split('to')[0];
+      var priceTo = ((searchURL.split('price')[1]).split('to')[1]).split('&')[0]; //split để lấy giá đến nhé, VD là số 300k trong link kia
+      position = position.split('&')[1];
+      for(let i = 1; i <= numOfPage; i++){
+          pageIndex = (i-1)*8;
+          pages += "<a onclick='setLinkAndGoToSearch()' href='index.html?" + filterId + "&search=price" + priceFrom + "to" + priceTo + "&" + pageIndex + "'";
+          if(pageIndex == position){
+              pages += "class='active'>" + i + "</a>";
+          }else{
+              pages += ">" + i + "</a>";
+          }
+      }
     }
+    else {for(let i = 1; i <= numOfColorPage; i++){
+        pageIndex = (i-1)*8;
+        pages += "<a href='index.html?" + filterId + "&" + colorUrl[0] + "&" + pageIndex + "'";
+        if(pageIndex == colorUrl[1]){
+            pages += "class='active'>" + i + "</a>";
+        }else{
+            pages += ">" + i + "</a>";
+        }
+      }
+    }
+  }
     document.querySelector('.pagination').innerHTML = pages;
 
 }
@@ -565,7 +585,7 @@ function saveProduct2(productId){
                 //handle quantity of product in shopping cart
                 productCartArr[position].quantity = checkProductQuantity(productId, productCartArr);
             }
-            
+
             //re-set to local storage
             localStorage.setItem('productCartArr',JSON.stringify(productCartArr));
             alert("Thêm vào giỏ thành công!!!");
@@ -686,11 +706,12 @@ window.onload = function(){
     defaultUserAccount();
     autoNextSlide();
     checkLoginStatus();
-    displayUser(); 
+    displayUser();
     urlHandle();
     sortByFixPrice();
     createShoppingCart();
     createOrderListPage();
     displaySearchResult();
+    searchFromPriceToPrice();
     getProduct();
 }
